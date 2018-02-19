@@ -11,4 +11,9 @@ class Card
   def ==(other_card)
     @front == other_card.front
   end
+
+  def save
+    DB.exec("INSERT INTO cards (front, back) VALUES ('#{@front}', '#{@back}');")
+  end
+
 end

@@ -10,16 +10,15 @@
 ## Specs
 
 #### Backend
-  1. Create new Card instance, store attributes in postgres cards table (initialize).
+  1. Create new Card instance (initialize).
     Example input:
     Example output:
   2. Get array of Card objects from cards table (all, class method).
-  3. Clear cards table & objects array (clear_all, class method).
+  3. Clear cards table (clear_all, class method).
     Example input:
     Example output
-  4. Find card given name (find, class method)???
-  5. Update name, front or back, update database (name; front; back)
-  6. Delete card with given name, update database (delete)
+  4. Update name, front or back, update database (name; front; back)
+  5. Delete card instance, update database (delete)
 
 #### Frontend
   1. Input word, display word list
