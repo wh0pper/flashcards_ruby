@@ -66,4 +66,13 @@ describe('Card') do
       expect(Card.all.include?(card1)).to(eq(true))
     end
   end
+
+  describe('#delete') do
+    it('deletes card data from table') do
+      card1 = Card.new({:front =>'front1', :back => 'back1'})
+      card1.create
+      card1.delete
+      expect(Card.all).to(eq([]))
+    end
+  end
 end

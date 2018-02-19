@@ -36,4 +36,8 @@ class Card
   def update
     DB.exec("UPDATE cards SET front = '#{@front}', back = '#{@back}' WHERE id=#{@id}")
   end
+
+  # def delete
+  #
+  # end
 end
