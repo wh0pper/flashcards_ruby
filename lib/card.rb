@@ -34,10 +34,10 @@ class Card
   end
 
   def update
-    DB.exec("UPDATE cards SET front = '#{@front}', back = '#{@back}' WHERE id=#{@id}")
+    DB.exec("UPDATE cards SET front = '#{@front}', back = '#{@back}' WHERE id=#{@id};")
   end
 
-  # def delete
-  #
-  # end
+  def delete
+    DB.exec("DELETE FROM cards WHERE id=#{@id};")
+  end
 end
