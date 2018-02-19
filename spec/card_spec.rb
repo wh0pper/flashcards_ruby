@@ -28,20 +28,28 @@ describe('Card') do
     end
   end
 
-  describe('#save') do
-    it('saves card to database') do
+  describe('#create') do
+    it('creates card to database') do
       card1 = Card.new({:front =>'front1', :back => 'back1'})
       card2 = Card.new({:front =>'front2', :back => 'back2'})
-      card1.save
+      card1.create
       expect(Card.all.include?(card1)).to(eq(true));
       expect(Card.all.include?(card2)).to(eq(false));
     end
+
+    # it('returns id') do
+    #   card1 = Card.new({:front =>'front1', :back => 'back1'})
+    #   card1.create
+    #   result = DB.exec("SELECT id FROM cards WHERE front = '#{@front}' AND back = '#{@back}';")
+    #   binding.pry
+    #   expect(result[0].fetch('id')).to(eq(card1.id))
+    # end
   end
 
   describe('#clear') do
     it('clears all rows from card table') do
       card1 = Card.new({:front =>'front1', :back => 'back1'})
-      card1.save
+      card1.create
       Card.clear
       expect(Card.all).to(eq([]))
     end
@@ -50,7 +58,7 @@ describe('Card') do
   describe('#update') do
     it('updates card in cards table') do
       card1 = Card.new({:front =>'front1', :back => 'back1'})
-      card1.save
+      card1.create
       card1.front = 'new front'
       card1.back = 'new back'
       expect(Card.all.include?(card1)).to(eq(false))

@@ -1,7 +1,7 @@
 require("pry")
 
 class Card
-  attr_accessor :front, :back
+  attr_accessor :front, :back, :id
 
   def initialize(attributes)
     @front = attributes[:front]
@@ -27,8 +27,13 @@ class Card
     @front == other_card.front
   end
 
-  def save
+  def create
     DB.exec("INSERT INTO cards (front, back) VALUES ('#{@front}', '#{@back}');")
+    result = DB.exec("SELECT id FROM cards WHERE front = '#{@front}' AND back = '#{@back}';")
+    @id = result[0].fetch('id').to_i
   end
 
+  def update
+    DB.exec("UPDATE cards SET front = '#{@front}', back = '#{@back}' WHERE id=#{@id}")
+  end
 end
