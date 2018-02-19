@@ -46,4 +46,16 @@ describe('Card') do
       expect(Card.all).to(eq([]))
     end
   end
+
+  describe('#update') do
+    it('updates card in cards table') do
+      card1 = Card.new({:front =>'front1', :back => 'back1'})
+      card1.save
+      card1.front = 'new front'
+      card1.back = 'new back'
+      expect(Card.all.include?(card1)).to(eq(false))
+      card1.update
+      expect(Card.all.include?(card1)).to(eq(true))
+    end
+  end
 end
