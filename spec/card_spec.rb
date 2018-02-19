@@ -30,10 +30,11 @@ describe('Card') do
 
   describe('#save') do
     it('saves card to database') do
-      card = Card.new({:front =>'save-test', :back => 'back'})
-      card.save
-      expect(DB.exec("SELECT (front) VALUES ('save-test')")).to(eq(true));
-      expect(DB.exec("SELECT (front) VALUES ('not save-test')")).to(eq(false));
+      card1 = Card.new({:front =>'front1', :back => 'back1'})
+      card2 = Card.new({:front =>'front2', :back => 'back2'})
+      card1.save
+      expect(Card.all.include?(card1)).to(eq(true));
+      expect(Card.all.include?(card2)).to(eq(false));
     end
   end
 end

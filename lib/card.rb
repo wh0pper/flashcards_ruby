@@ -8,6 +8,17 @@ class Card
     @back = attributes[:back]
   end
 
+  def self.all
+    returned_cards = DB.exec("SELECT * FROM cards;")
+    cards = []
+    returned_cards.each() do |card|
+      front = card.fetch("front")
+      back = card.fetch("back")
+      cards.push(Card.new({:front => front, :back => back}))
+    end
+    return cards
+  end
+
   def ==(other_card)
     @front == other_card.front
   end
