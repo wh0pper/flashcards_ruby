@@ -1,0 +1,16 @@
+<form action='/<%=@entry.word%>' method="post">
+  <div class="form-group">
+    <input name="definition" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn btn-primary">Add definition</button>
+</form>
+
+<h3><strong><%= @entry.word %></strong></h3>
+
+<% @entry.definitions.each do |definition| %>
+  <p><%=definition%></p>
+<% end %>
+
+<form action='/' method="get">
+  <button type="submit" class="btn btn-secondary">Home</button>
+</form>

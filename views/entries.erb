@@ -1,0 +1,9 @@
+<form action="/" method="post">
+  <div class="form-group">
+    <input name="word" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn btn-primary">Add word</button>
+</form>
+<% @entries.each do |entry| %>
+  <h3><a href='/<%= entry.word %>'><%= entry.word %></a></h3>
+<% end %>
