@@ -19,6 +19,10 @@ class Card
     return cards
   end
 
+  def self.clear
+    DB.exec("DELETE FROM cards *;")
+  end
+
   def ==(other_card)
     @front == other_card.front
   end

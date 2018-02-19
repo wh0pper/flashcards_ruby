@@ -37,4 +37,13 @@ describe('Card') do
       expect(Card.all.include?(card2)).to(eq(false));
     end
   end
+
+  describe('#clear') do
+    it('clears all rows from card table') do
+      card1 = Card.new({:front =>'front1', :back => 'back1'})
+      card1.save
+      Card.clear
+      expect(Card.all).to(eq([]))
+    end
+  end
 end
