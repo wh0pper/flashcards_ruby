@@ -24,7 +24,7 @@ describe('Card') do
     it('returns true if card fronts are the same') do
       card1 = Card.new({:front =>'term', :back => 'definition'})
       card2 = Card.new({:front =>'term', :back => 'definition'})
-      expect(card1.front == card2.front).to(eq(true))
+      expect(card1==card2).to(eq(true))
     end
   end
 end

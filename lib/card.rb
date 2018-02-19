@@ -8,4 +8,7 @@ class Card
     @back = attributes[:back]
   end
 
+  def ==(other_card)
+    @front == other_card.front
+  end
 end
