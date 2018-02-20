@@ -8,7 +8,7 @@ class Card
     @back = attributes[:back]
   end
 
-  def self.all
+  def self.read_all
     returned_cards = DB.exec("SELECT * FROM cards;")
     cards = []
     returned_cards.each() do |card|
@@ -19,25 +19,32 @@ class Card
     return cards
   end
 
-  def self.clear
+  def self.remove_all
     DB.exec("DELETE FROM cards *;")
   end
 
   def ==(other_card)
-    @front == other_card.front
+    (@front == other_card.front) && (@back == other_card.back)
   end
 
   def create
-    DB.exec("INSERT INTO cards (front, back) VALUES ('#{@front}', '#{@back}');")
-    result = DB.exec("SELECT id FROM cards WHERE front = '#{@front}' AND back = '#{@back}';")
-    @id = result[0].fetch('id').to_i
+    already_there = false
+    cards = Card.read_all
+    cards.each do |card|
+      already_there = true if self==card
+    end
+    if !already_there
+      DB.exec("INSERT INTO cards (front, back) VALUES ('#{@front}', '#{@back}');")
+      result = DB.exec("SELECT id FROM cards WHERE front = '#{@front}' AND back = '#{@back}';")
+      @id = result[0].fetch('id').to_i
+    end
   end
 
   def update
     DB.exec("UPDATE cards SET front = '#{@front}', back = '#{@back}' WHERE id=#{@id};")
   end
 
-  def delete
+  def remove
     DB.exec("DELETE FROM cards WHERE id=#{@id};")
   end
 end

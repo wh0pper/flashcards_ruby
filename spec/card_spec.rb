@@ -33,25 +33,18 @@ describe('Card') do
       card1 = Card.new({:front =>'front1', :back => 'back1'})
       card2 = Card.new({:front =>'front2', :back => 'back2'})
       card1.create
-      expect(Card.all.include?(card1)).to(eq(true));
-      expect(Card.all.include?(card2)).to(eq(false));
+      card1.create
+      expect(Card.read_all.include?(card1)).to(eq(true));
+      expect(Card.read_all.include?(card2)).to(eq(false));
     end
-
-    # it('returns id') do
-    #   card1 = Card.new({:front =>'front1', :back => 'back1'})
-    #   card1.create
-    #   result = DB.exec("SELECT id FROM cards WHERE front = '#{@front}' AND back = '#{@back}';")
-    #   binding.pry
-    #   expect(result[0].fetch('id')).to(eq(card1.id))
-    # end
   end
 
-  describe('#clear') do
-    it('clears all rows from card table') do
+  describe('#remove_all') do
+    it('removes all rows from card table') do
       card1 = Card.new({:front =>'front1', :back => 'back1'})
       card1.create
-      Card.clear
-      expect(Card.all).to(eq([]))
+      Card.remove_all
+      expect(Card.read_all).to(eq([]))
     end
   end
 
@@ -61,18 +54,18 @@ describe('Card') do
       card1.create
       card1.front = 'new front'
       card1.back = 'new back'
-      expect(Card.all.include?(card1)).to(eq(false))
+      expect(Card.read_all.include?(card1)).to(eq(false))
       card1.update
-      expect(Card.all.include?(card1)).to(eq(true))
+      expect(Card.read_all.include?(card1)).to(eq(true))
     end
   end
 
-  describe('#delete') do
-    it('deletes card data from table') do
+  describe('#remove') do
+    it('removes card data from table') do
       card1 = Card.new({:front =>'front1', :back => 'back1'})
       card1.create
-      card1.delete
-      expect(Card.all).to(eq([]))
+      card1.remove
+      expect(Card.read_all).to(eq([]))
     end
   end
 end

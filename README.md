@@ -1,11 +1,11 @@
-# Word Definer
+# Flashcards
 
-#### A sinatra application, 02.16.2018
+#### A simple Sinatra/PostgreSQL application, 02.19.2018
 
 #### By Jared Clemmensen, Russell Hofvendahl
 
 ## Description
-  A simple CRUD application for making and using flashcards. Uses class Card with methods to initialize card, access and modify card info and delete card data from database.
+  A CRUD application for making and using flashcards. Uses class Card with methods to initialize card, access and modify card info and delete card data from database.
 
 ## Specs
 
@@ -21,9 +21,10 @@
   5. Delete card instance, update database (delete)
 
 #### Frontend
-  1. Input word, display word list
-  2. Click word, display word page
-  3. Input word definition, display word definitions
+  1. Make card, display card fronts
+  2. Click to display back; again to display front
+  3. Click x icon to remove card
+  4. click pencil icon to edit
 
 ## Setup/Installation Requirements
   1. install ruby 2.2.2
@@ -31,10 +32,9 @@
   3. clone or download word_definer repository
   4. run bundler in repository ($ bundle)
   5. host locally with Sinatra ($ ruby app.rb)
-  Word Definer is also hosted at https://secret-bayou-20843.herokuapp.com/
 
 ## Technologies Used
-  This application was built with Sinatra and hosted with Heroku.
+  This application was built with Sinatra and uses Postgresql for database management.
 
 ## License
   Copyright (c) 2018 Jared Clemmensen, Russell Hofvendahl
